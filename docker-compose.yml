@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  lolbanbot:
+    build: .
+    container_name: lolbanbot
+    environment:
+      - DISCORD_BOT_TOKEN=replaceme
