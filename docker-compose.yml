@@ -6,3 +6,4 @@ services:
     container_name: lolbanbot
     environment:
       - DISCORD_BOT_TOKEN=replaceme
+      - OUTPUT_CHANNEL_NAME=text-channel-name-here

@@ -12,6 +12,7 @@ intents.presences = True
 client = discord.Client(intents=intents)
 
 TOKEN = os.environ.get("DISCORD_BOT_TOKEN")
+OUTPUT_CHANNEL_NAME = os.environ.get("OUTPUT_CHANNEL_NAME")
 
 async def get_activity():
     for guild in client.guilds:
@@ -21,7 +22,7 @@ async def get_activity():
                 print(f"{member.name} is playing {activity.name}")
                 if activity.name.lower() == "league of legends":
                     await member.send("You have been playing League of Legends. You are now banned.")
-                    channel = discord.utils.get(client.get_all_channels(), name="under-the-concrete-ceiling")
+                    channel = discord.utils.get(client.get_all_channels(), name=OUTPUT_CHANNEL_NAME)
                     await channel.send(f"banning {member.name} for playing League. see ya 👋")
                     await member.ban(delete_message_days=0, reason="playing league")
 
@@ -31,7 +32,6 @@ async def get_activity():
 @client.event
 
 async def on_ready():
-    channel = discord.utils.get(client.get_all_channels(), name="under-the-concrete-ceiling")
     while True:
         await get_activity()
 
